@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Sidebar from '../components/sidebar';
-import Explore from '../components/explore';
-import Post from '../components/post';
+import Explore from '../components/explores/explore';
+import Post from '../components/post/post';
 
 
 
@@ -16,29 +16,20 @@ export default function Home() {
   // const [activeLink, setActiveLink] = useState("Home");
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="w-full flex md:flex-row h-screen bg-gray-100 overflow-y">
       {/* Sidebar */}
+      
       <Sidebar activeLink="Home"/>
 
       {/* Feed */}
-      <div className="w-1/2 bg-gray-100 p-4">
-        <h2 className="font-bold text-2xl mb-4">For You</h2>
+      <div className="ml-[17rem] w-full h-screen flex flex-col lg:w-[60%] bg-white border-x border-gray-200 ">
+        <h2 className="flex p-2 font-bold text-lg mb-4 border-b border-gray-200">For You</h2>
         {/* Post */}
         <Post/>
-        <div className="bg-white p-4 mb-4 rounded">
-          <h3 className="font-bold">Username</h3>
-          <p>Post content</p>
-        </div>
-        {/* Post */}
-        <div className="bg-white p-4 mb-4 rounded">
-          <h3 className="font-bold">Username</h3>
-          <p>Post content</p>
-        </div>
       </div>
-
       {/* Explore */}
       <Explore/>
-      </div>
+    </div>
   );
 }
   

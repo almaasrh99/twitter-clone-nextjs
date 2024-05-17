@@ -1,0 +1,36 @@
+export const posts = [
+    {
+      username: '@Anika_Kubow12',
+      name: 'Anika Kubow',
+      time : '5h',
+      content: 'Tetap semangat dan jangan pernah menyerah! Setiap langkah kecil membawa kita lebih dekat ke tujuan besar. 💪✨ #MotivasiSenin',
+      avatar: 'https://i.pravatar.cc/150?img=1',
+      reply: '10',
+      repost: '3',
+      like: '20',
+      view: '50',
+    },
+    {
+      username: '@jessica_xoxo',
+      name : 'Jessica',
+      time : '2h',
+      content: 'Keberhasilan adalah hasil dari kerja keras, ketekunan, dan belajar dari kegagalan. 📚💡 #QuoteOfTheDay',
+      avatar: 'https://i.pravatar.cc/150?img=2', 
+      reply: '5',
+      repost: '10',
+      like: '25',
+      view: '80',
+    },
+
+    {
+      username: '@david_xyz',
+      name : 'David Abraham',
+      time : '10h',
+      content: 'Keberhasilan adalah hasil dari kerja keras, ketekunan, dan belajar dari kegagalan. 📚💡 #QuoteOfTheDay',
+      avatar: 'https://i.pravatar.cc/150?img=68', 
+      reply: '10',
+      repost: '20',
+      like: '30',
+      view: '90',
+    },
+  ];

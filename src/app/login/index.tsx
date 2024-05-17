@@ -131,7 +131,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap gap-y-1 gap-x-4 text-[12px] text-[#536471] justify-center mb-4">
+      <div className="flex flex-wrap gap-y-1 gap-x-4 text-[12px] text-[#536471] justify-center mb-4 xs:p-2 xs:mb-4">
         <div>Tentang</div>
         <div>Unduh aplikasi X</div>
         <div>Pusat Bantuan</div>
