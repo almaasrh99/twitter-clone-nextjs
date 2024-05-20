@@ -1,7 +1,7 @@
 import React from "react";
 import Search from "../search";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import { explores } from "./dummyData";
+import { explores } from "./dummyExplores";
 
 export default function explore() {
   return (

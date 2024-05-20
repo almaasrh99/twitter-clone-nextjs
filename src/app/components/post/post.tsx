@@ -4,14 +4,16 @@ import React, { useEffect, useState } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { MdOutlineGifBox, MdOutlineImage } from "react-icons/md";
 import { RiCalendarScheduleLine, RiListRadio } from "react-icons/ri";
-import { posts } from "./dummyData";
+// import { posts } from "./dummyPosts";
+import { user } from '../../../../public/dummyUsers';
 import { BiMessageRounded } from "react-icons/bi";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { GoHeart } from "react-icons/go";
 import { IoIosStats } from "react-icons/io";
 import { LuDot } from "react-icons/lu";
+import Link from "next/link";
 
-export default function post() {
+export default function post({}) {
   const [imageUrl, setImageUrl] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
@@ -29,7 +31,7 @@ export default function post() {
     } else {
       setIsLoggedIn(true);
       // setEmail(storedToken || "");
-      setImageUrl(imageUrl); // Convert imageUrl to boolean
+      setImageUrl(imageUrl); 
     }
   }, []);
 
@@ -37,7 +39,7 @@ export default function post() {
     return null;
   }
   return (
-    <div className="flex items-end">
+    <div className="w-full flex h-full items-stretch ">
       <div className="text-center w-full">
         <div className="flex flex-col items-start justify-center bg-white mx-auto">
           <div className="flex items-center">
@@ -168,23 +170,24 @@ export default function post() {
           </form>
           <hr className="w-full mt-2 border-b-gray-200 flex-grow mx-2" />
           <div className="mt-4 flex flex-col items-start w-full">
-            {posts.map((post, index) => (
+            {user.map((user, Id) => (
+               user.posts.map((post, postIndex) => (
               <div
-                key={index}
+                key={`${Id}-${postIndex}`}
                 className="w-full flex flex-col items-start m-t-2 bg-white p-4 mb-4 rounded border-b border-bg-gray-200"
               >
                 <div className="flex items-start w-full">
                   <img
-                    src={post.avatar} 
+                    src={user.avatar} 
                     alt="Avatar"
                     className="w-10 h-10 rounded-full mr-2"
                   />
                   <div className="w-full flex flex-col items-start">
                     <div className="flex justify-start items-center ml-2">
-                    <h3 className="font-bold">{post.name}</h3>
-                    <p className="text-base ml-2 text-slate-400">{post.username} </p>
+                    <Link href={`/profile/${user.name}`}> <h3 className="font-bold">{user.name}</h3> </Link>
+                    <p className="text-base ml-2 text-slate-400">{user.username} </p>
                     <div className="flex text-slate-400"><LuDot size={16}/></div>
-                    <p className=" text-center text-base text-slate-400"> {[post.time]}</p>
+                    <p className=" text-center text-base text-slate-400"> {[post.date]}</p>
                     </div>
                     <p className="p-2 text-base text-justify text-slate-900">
                       {post.content}
@@ -270,6 +273,7 @@ export default function post() {
                   </div>
                 </div>
               </div>
+               ))
             ))}
           </div>
         </div>

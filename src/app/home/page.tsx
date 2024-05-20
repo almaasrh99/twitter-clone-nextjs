@@ -22,10 +22,10 @@ export default function Home() {
       <Sidebar activeLink="Home"/>
 
       {/* Feed */}
-      <div className="ml-[17rem] w-full h-screen flex flex-col lg:w-[60%] bg-white border-x border-gray-200 ">
+      <div className="ml-[17rem] w-full flex-col bg-white border-x border-gray-200 items-center justify-center">
         <h2 className="flex p-2 font-bold text-lg mb-4 border-b border-gray-200">For You</h2>
         {/* Post */}
-        <Post/>
+        <Post user={undefined}/>
       </div>
       {/* Explore */}
       <Explore/>
