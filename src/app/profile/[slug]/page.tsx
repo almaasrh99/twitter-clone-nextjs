@@ -25,6 +25,8 @@ function getData(slug: string) {
 export default function page({ params }: { params: { slug: string } }) {
   const data = getData(params.slug);
   console.log("Data:", data)
+  const router = useRouter();
+
 
   return (
     <div className="w-full flex md:flex-row bg-gray-100 overflow-y">
@@ -33,7 +35,7 @@ export default function page({ params }: { params: { slug: string } }) {
 
       <div className="ml-[17rem] w-full flex-col bg-white border-x border-gray-200 items-center justify-center">
         <div className="fixed bg-white/50 backdrop-blur-lg z-10 flex p-2 h-12 w-1/2">
-          <IoArrowBackOutline size={24} />
+        <IoArrowBackOutline size={24} onClick={() => router.back()} style={{ cursor: 'pointer' }} />
           <div className="flex flex-col ml-4">
             <h1 className="text-xl text-slate-900 font-bold">
               {data?.name}
