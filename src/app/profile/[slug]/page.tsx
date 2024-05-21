@@ -29,7 +29,7 @@ export default function page({ params }: { params: { slug: string } }) {
   return (
     <div className="w-full flex md:flex-row bg-gray-100 overflow-y">
       {/* Sidebar */}
-      <Sidebar activeLink="Profile" />
+      <Sidebar activeLink="" />
 
       <div className="ml-[17rem] w-full flex-col bg-white border-x border-gray-200 items-center justify-center">
         <div className="fixed bg-white/50 backdrop-blur-lg z-10 flex p-2 h-12 w-1/2">
