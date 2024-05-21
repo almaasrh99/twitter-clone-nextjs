@@ -34,7 +34,7 @@ export default function page({ params }: { params: { slug: string } }) {
       <Sidebar activeLink="" />
 
       <div className="ml-[17rem] w-full flex-col bg-white border-x border-gray-200 items-center justify-center">
-        <div className="fixed bg-white/50 backdrop-blur-lg z-10 flex p-2 h-12 w-1/2">
+        <div className="fixed bg-white/50 backdrop-blur-lg z-10 flex p-2 h-12 w-[53%]">
         <IoArrowBackOutline size={24} onClick={() => router.back()} style={{ cursor: 'pointer' }} />
           <div className="flex flex-col ml-4">
             <h1 className="text-xl text-slate-900 font-bold">
