@@ -19,7 +19,15 @@ export default function post({}) {
   const [imageUrl, setImageUrl] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
+  const [posts, setPosts] = useState([]);
+  const [input, setInput] = useState('');
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setPosts([...posts, input]);
+    setInput('');
+  };
+  
 
   useEffect(() => {
     // Melakukan pengecekan apakah user sudah login atau belum
@@ -48,7 +56,7 @@ export default function post({}) {
           <div className="flex items-center">
             <div className="ml-4 text-xl"></div>
           </div>
-          <form className="flex flex-col w-full">
+          <form onSubmit={handleSubmit} className="flex flex-col w-full">
             <div className="w-full flex items-center space-x-2">
               {/* Profile Picture */}
               {imageUrl && (
@@ -64,6 +72,8 @@ export default function post({}) {
                 name="content"
                 type="text"
                 placeholder="What is happening?"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
               />
             </div>
 
@@ -171,12 +181,120 @@ export default function post({}) {
               </div>
             </div>
           </form>
+          {/* <hr className="w-full mt-2 border-b-gray-200 flex-grow mx-2" /> */}
+          <div className="mt-4 flex flex-col items-start w-full">
+            {user.map((user, indexId) => (
+              posts.map((post, index) => (
+              <div key={index}className="w-full flex flex-col items-start m-t-2 bg-white p-4 mb-4 rounded border-b border-bg-gray-200 hover:bg-slate-100 cursor-pointer"
+              >
+                <div className="flex items-start w-full">
+                <Link href={`/profile/${user.name}`}>
+                  <img
+                    src={user.avatar} 
+                    alt="Avatar"
+                    className="w-10 h-10 rounded-full mr-2"
+                  />
+                  </Link>
+                  <div className="w-full flex flex-col items-start">
+                    <div className="flex justify-start items-center ml-2">
+                    <Link href={`/profile/${user.name}`}> <h3 className="font-bold">{user.name}</h3> </Link>
+                    <p className="text-base ml-2 text-slate-400">{user[0].username} </p>
+                    <div className="flex text-slate-400"><LuDot size={16}/></div>
+                    <p className=" text-center text-base text-slate-400"> </p>
+                    </div>
+                    <p className="p-2 text-base text-justify text-slate-900">
+                    {post}
+                    </p>
+                    <div className="w-full flex items-center justify-between">
+                      <div className="flex justify-center items-center p-1 ">
+                        <div className="rounded-full hover:bg-sky-100">
+                          <BiMessageRounded
+                            size={20}
+                            color="#808080"
+                            className="cursor-pointer"
+                            style={{ transition: "color 0.3s ease" }}
+                            onMouseOver={(e) =>
+                              (e.currentTarget.style.color = "#1d9bf0")
+                            }
+                            onMouseOut={(e) =>
+                              (e.currentTarget.style.color = "")
+                            }
+                          />
+                        </div>
+                        <span className="text-sm p-1 text-gray-500 hover:text-[#1d9bf0]">
+                          {/* {post.reply} */}
+                        </span>
+                      </div>
+                      <div className="flex justify-center items-center p-1">
+                        <div className="rounded-full hover:bg-green-100">
+                          <AiOutlineRetweet
+                            size={20}
+                            color="#808080"
+                            className="cursor-pointer"
+                            style={{ transition: "color 0.3s ease" }}
+                            onMouseOver={(e) =>
+                              (e.currentTarget.style.color = "#1FCB5B")
+                            }
+                            onMouseOut={(e) =>
+                              (e.currentTarget.style.color = "")
+                            }
+                          />
+                        </div>
+                        <span className="text-sm p-1 text-gray-500 hover:text-[#1FCB5B]">
+                      0
+                        </span>
+                      </div>
+                      <div className="flex justify-center items-center p-1">
+                        <div className="rounded-full hover:bg-red-100">
+                          <GoHeart
+                            size={20}
+                            color="#808080"
+                            className="cursor-pointer"
+                            style={{ transition: "color 0.3s ease" }}
+                            onMouseOver={(e) =>
+                              (e.currentTarget.style.color = "#DF3B6A")
+                            }
+                            onMouseOut={(e) =>
+                              (e.currentTarget.style.color = "")
+                            }
+                          />
+                        </div>
+                        <span className="text-sm p-1 text-gray-500 hover:text-[#DF3B6A]">
+                        0
+                        </span>
+                      </div>
+                      <div className="flex justify-center items-center p-1">
+                        <div className="rounded-full hover:bg-sky-100">
+                          <IoIosStats
+                            size={20}
+                            color="#808080"
+                            className="cursor-pointer"
+                            style={{ transition: "color 0.3s ease" }}
+                            onMouseOver={(e) =>
+                              (e.currentTarget.style.color = "#1d9bf0")
+                            }
+                            onMouseOut={(e) =>
+                              (e.currentTarget.style.color = "")
+                            }
+                          />
+                        </div>
+                        <span className="text-sm p-1 text-gray-500 hover:text-[#1d9bf0]">
+                         0
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               ))
+            ))}
+          </div>
           <hr className="w-full mt-2 border-b-gray-200 flex-grow mx-2" />
           <div className="mt-4 flex flex-col items-start w-full">
-            {user.map((user, Id) => (
+            {user.map((user, indexId) => (
                user.posts.map((post, postIndex) => (
               <div
-                key={`${Id}-${postIndex}`}
+                key={`${indexId}-${postIndex}`}
                 className="w-full flex flex-col items-start m-t-2 bg-white p-4 mb-4 rounded border-b border-bg-gray-200 hover:bg-slate-100 cursor-pointer"
               >
                 <div className="flex items-start w-full">
