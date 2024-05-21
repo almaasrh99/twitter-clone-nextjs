@@ -6,7 +6,7 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { PiBalloon } from "react-icons/pi";
 import { MdOutlineCalendarMonth } from "react-icons/md";
-import { user } from "../../../public/dummyUsers";
+import { user } from "../../dummyUsers";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { LuDot } from "react-icons/lu";
 import { BiMessageRounded } from "react-icons/bi";
@@ -99,7 +99,7 @@ export default function page() {
               <span className="text-base">Joined {user[0].joined}</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 mb-4">
+          <div className="flex items-center space-x-2 mb-4 ml-3">
             <p className="text-sm font-semibold">{user[0].following} </p>
             <span className="ml-1 text-slate-400"> following</span>
             <p className="text-sm font-semibold ml-2">{user[0].followers} </p>

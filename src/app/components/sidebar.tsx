@@ -158,7 +158,7 @@ export default function sidebar({ activeLink }) {
                 : ""
             }`}
           >
-            <Link href="/profile">
+            <Link href={`/profile/`}>
               <div className="flex items-center">
                 {activeLink === "Profile" ? (
                   <HiUser size={26} className="mr-2" />

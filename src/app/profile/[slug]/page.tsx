@@ -2,10 +2,10 @@
 import Sidebar from "../../components/sidebar";
 import Explore from "../../components/explores/explore";
 import { IoArrowBackOutline } from "react-icons/io5";
-// import { useRouter } from "next/navigation";
+import { useEffect, useState } from 'react';
 import { PiBalloon } from "react-icons/pi";
 import { MdOutlineCalendarMonth } from "react-icons/md";
-import { user } from "../../../../public/dummyUsers";
+import { user as dummyUsers } from "../../../dummyUsers";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { LuDot } from "react-icons/lu";
 import { BiMessageRounded } from "react-icons/bi";
@@ -13,11 +13,18 @@ import { GoHeart } from "react-icons/go";
 import { IoIosStats } from "react-icons/io";
 import { useRouter } from "next/navigation";
 
-export default function page() {
-    const router = useRouter();
-    const { username } = router.query || {};
-    const user_profile = user.find((user) => user.username === username);
 
+function getData(slug: string) {
+  const decodedSlug = decodeURIComponent(slug);
+  console.log('Decoded Slug:', decodedSlug);
+  console.log('Dummy Users:', dummyUsers);
+  const user = dummyUsers.find(user => user.name === decodedSlug);
+  console.log('User:', user);
+  return user;
+}
+export default function page({ params }: { params: { slug: string } }) {
+  const data = getData(params.slug);
+  console.log("Data:", data)
 
   return (
     <div className="w-full flex md:flex-row bg-gray-100 overflow-y">
@@ -25,28 +32,28 @@ export default function page() {
       <Sidebar activeLink="Profile" />
 
       <div className="ml-[17rem] w-full flex-col bg-white border-x border-gray-200 items-center justify-center">
-        <div className="fixed bg-white/50 backdrop-blur-lg z-10 flex p-2 h-12 w-full">
+        <div className="fixed bg-white/50 backdrop-blur-lg z-10 flex p-2 h-12 w-1/2">
           <IoArrowBackOutline size={24} />
           <div className="flex flex-col ml-4">
             <h1 className="text-xl text-slate-900 font-bold">
-              {user_profile?.name}
+              {data?.name}
             </h1>
             <p className="text-sm text-slate-400 mt-1">
-              {user_profile?.post} Posts
+              {data?.post} Posts
             </p>
           </div>
         </div>
 
         <div className="relative mt-20">
           <img
-            src={user_profile?.banner}
+            src={data?.banner}
             alt="User banner"
             className="w-full h-40 object-cover"
           />
 
           {
             <img
-              src={user_profile?.avatar}
+              src={data?.avatar}
               alt="User avatar"
               className="w-36 h-36 border-4 border-white rounded-full absolute bottom-0 left-0 ml-4 -mb-12"
             />
@@ -59,49 +66,49 @@ export default function page() {
         </div>
         <div className="flex flex-col justify-start p-4 mt-10">
           <div className="p-2 flex flex-col">
-            <h1 className="font-bold text-xl"> {user_profile?.name}</h1>
-            <p className="text-base text-slate-400">{user_profile?.username}</p>
+            <h1 className="font-bold text-xl"> {data?.name}</h1>
+            <p className="text-base text-slate-400">{data?.username}</p>
           </div>
           <div className="flex ml-2">
-            <p className="text-base"> {user_profile?.bio}</p>
+            <p className="text-base"> {data?.bio}</p>
           </div>
           <div className="flex justify-start items-center p-2 space-x-4">
             <div className="flex justify-center items-center text-slate-400">
               <PiBalloon />{" "}
-              <span className="text-base">Born {user_profile?.born}</span>
+              <span className="text-base">Born {data?.born}</span>
             </div>
             <div className="flex justify-center items-center text-slate-400">
               <MdOutlineCalendarMonth />{" "}
-              <span className="text-base">Joined {user_profile?.joined}</span>
+              <span className="text-base">Joined {data?.joined}</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 mb-4">
-            <p className="text-sm font-semibold">{user_profile?.following} </p>
+          <div className="flex items-center space-x-2 mb-4 ml-3">
+            <p className="text-sm font-semibold">{data?.following} </p>
             <span className="ml-1 text-slate-400"> following</span>
             <p className="text-sm font-semibold ml-2">
-              {user_profile?.followers}{" "}
+              {data?.followers}{" "}
             </p>
             <span className="ml-1 text-slate-400"> followers</span>
           </div>
           <div className="mt-4">
             <h2 className="text-lg font-bold mb-2">Posts</h2>
             <div className="mt-4 flex flex-col items-start w-full border-t">
-              {user_profile?.posts?.map((posts, id) => (
+              {data?.posts?.map((posts, id) => (
                 <div
                   key={id}
                   className="w-full flex flex-col items-start m-t-2 bg-white p-4 mb-4 rounded border-b border-bg-gray-200 hover:bg-slate-100 cursor-pointer"
                 >
                   <div className="flex items-start w-full">
                     <img
-                      src={user_profile?.avatar}
+                      src={data?.avatar}
                       alt="Avatar"
                       className="w-10 h-10 rounded-full mr-2"
                     />
                     <div className="w-full flex flex-col items-start">
                       <div className="flex justify-start items-center ml-2">
-                        <h3 className="font-bold">{user_profile.name}</h3>
+                        <h3 className="font-bold">{data.name}</h3>
                         <p className="text-base ml-2 text-slate-400">
-                          {user_profile.username}{" "}
+                          {data.username}{" "}
                         </p>
                         <div className="flex text-slate-400">
                           <LuDot size={16} />
@@ -204,3 +211,4 @@ export default function page() {
     </div>
   );
 }
+

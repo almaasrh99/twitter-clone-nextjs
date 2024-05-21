@@ -5,7 +5,7 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { MdOutlineGifBox, MdOutlineImage } from "react-icons/md";
 import { RiCalendarScheduleLine, RiListRadio } from "react-icons/ri";
 // import { posts } from "./dummyPosts";
-import { user } from '../../../../public/dummyUsers';
+import { user } from '../../../dummyUsers';
 import { BiMessageRounded } from "react-icons/bi";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { GoHeart } from "react-icons/go";
@@ -13,10 +13,13 @@ import { IoIosStats } from "react-icons/io";
 import { LuDot } from "react-icons/lu";
 import Link from "next/link";
 
+
 export default function post({}) {
+  
   const [imageUrl, setImageUrl] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
+
 
   useEffect(() => {
     // Melakukan pengecekan apakah user sudah login atau belum
@@ -174,14 +177,16 @@ export default function post({}) {
                user.posts.map((post, postIndex) => (
               <div
                 key={`${Id}-${postIndex}`}
-                className="w-full flex flex-col items-start m-t-2 bg-white p-4 mb-4 rounded border-b border-bg-gray-200"
+                className="w-full flex flex-col items-start m-t-2 bg-white p-4 mb-4 rounded border-b border-bg-gray-200 hover:bg-slate-100 cursor-pointer"
               >
                 <div className="flex items-start w-full">
+                <Link href={`/profile/${user.name}`}>
                   <img
                     src={user.avatar} 
                     alt="Avatar"
                     className="w-10 h-10 rounded-full mr-2"
                   />
+                  </Link>
                   <div className="w-full flex flex-col items-start">
                     <div className="flex justify-start items-center ml-2">
                     <Link href={`/profile/${user.name}`}> <h3 className="font-bold">{user.name}</h3> </Link>
